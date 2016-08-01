@@ -1,0 +1,58 @@
+{
+  "cars": [
+    {
+      "make": "Nissan",
+      "model": "Rogue",
+      "year": "2006",
+      "price": "6990",
+      "color": "FireBrick",
+      "purchased": false,
+      "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+    },
+    {
+      "make": "Nissan",
+      "model": "Pathfinder",
+      "year": "2009",
+      "price": "7999",
+      "color": "GoldenRod",
+      "purchased": false,
+      "description": "This is an average 2009 Nissan Pathfinder with only 100000 miles on it. Plastic seats, power everything."
+    },
+    {
+      "make": "Nissan",
+      "model": "Sentra",
+      "year": "2015",
+      "price": "19999",
+      "color": "DarkCyan",
+      "purchased": false,
+      "description": "This is a below average 2015 Nissan Sentra with only 1000 miles on it. Leather everything, power nothing."
+    },
+    {
+      "make": "Nissan",
+      "model": "Altima",
+      "year": "2002",
+      "price": "1599",
+      "color": "Black",
+      "purchased": false,
+      "description": "This vehicle is the definition of mediocrity."
+    },
+    {
+      "make": "Nissan",
+      "model": "Maxima",
+      "year": "2010",
+      "price": "12999",
+      "color": "DarkOrchid",
+      "purchased": false,
+      "description": "It may not look very good, but at least it's fast as hell.  Interior smell: tolerable."
+    },
+    {
+      "make": "Nissan",
+      "model": "GT-R",
+      "year": "2016",
+      "price": "101000",
+      "color": "DarkOrange",
+      "purchased": true,
+      "description": "This vehicle is needlessly fast.  You will seriously never have the opportunity to use the full potential of this vehicle unless you own your own racetrack."
+    }
+  ]
+}
