@@ -4,14 +4,6 @@ function populatePage (inventory) {
 
   for (var i=0; i<inventory.cars.length; i++) {
 
-    // var color = inventory.cars[i].color.split(/(?=[A-Z])/);
-    // var colorOutput = "";
-    // for (var prop in color) {
-    //   colorOutput += color[prop] + " ";
-    // }
-
-    // console.log(colorOutput);
-
     cards[i].innerHTML += 
      "<span class='titleSpan'>Manufacturer: </span><span>"
      +  inventory.cars[i].make
@@ -29,8 +21,9 @@ function populatePage (inventory) {
      + inventory.cars[i].description
      + "</span";
 
-     cards[i].style.border = "2px solid " + inventory.cars[i].color;
-
+      cards[i].style.borderColor = inventory.cars[i].color;
+     //cards[i].style.border = "2px solid " + inventory.cars[i].color;
+    //this is why dynamic borders dont work on click event^
 
   }
 
@@ -45,9 +38,20 @@ CarLot.loadInventory();
 var divFocus = "";
 
 function changeEventHandler(event) {
-  console.log(divFocus);
+  
   divFocus.querySelector(".desc").innerHTML = event.target.value;
   divFocus.className = "cardInfo";
+  document.getElementById("searchBar").value = "";
+  document.getElementById("searchBar").blur();
+  //document.querySelectorll("").forEach(function (item) {
+  //item.classList.toggle("")
+  //})
+  //
+}
+
+function inputChange(event) {
+  divFocus.querySelector(".desc").innerHTML = event.target.value;
+
 
 }
 

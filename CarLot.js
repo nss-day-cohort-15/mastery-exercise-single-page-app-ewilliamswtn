@@ -1,3 +1,7 @@
+document.getElementById("submitButton").addEventListener("click", function(event){
+    event.preventDefault()
+});
+
 var CarLot = (function () { //iffe
   var inventory = [];
 
@@ -5,18 +9,28 @@ var CarLot = (function () { //iffe
     activateEvents: function() {
       var cards = document.querySelectorAll('div.cardInfo');
       for (var i=0; i<cards.length; i++) {
-        cards[i].addEventListener("click", function(){
-          // this.style.backgroundColor = "black";
-          // this.style.borderWidth = "thick";
+        cards[i].addEventListener("click",function(){
 
+          //resets background color if input is not changed
+          document.querySelectorAll(".cardInfo").forEach(function (item) {
+            if (item.className === "cardInfo userTarget") {
+              item.className = "cardInfo";
+            }
+          })
 
           this.className = "cardInfo userTarget";
           divFocus = this;
           document.getElementById("searchBar").placeholder = "";
           document.getElementById("searchBar").value = "";
           document.getElementById("searchBar").focus();
-
+          console.log(divFocus);
         })
+          // this.style.backgroundColor = "black";
+          // 
+          //doesn's work ^
+
+
+        
         // cards[i].addEventListener("mouseup", function(){
         //   // this.style.backgroundColor = "";
         //   // this.style.borderWidth = "";
