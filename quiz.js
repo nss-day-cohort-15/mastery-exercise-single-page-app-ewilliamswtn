@@ -1,4 +1,8 @@
 //CarLot augmentor iife for event handlers
+window.onload = function () {
+  CarLot.loadInventory(CarLot.populatePage);
+  CarLot.activateEvents();
+}
 
 var CarLot = (function (oldCarLot) {
   oldCarLot.populatePage = function (inventoryPH) {
@@ -82,5 +86,4 @@ var CarLot = (function (oldCarLot) {
   return oldCarLot;
 })(CarLot);
 
-CarLot.loadInventory(CarLot.populatePage);
-CarLot.activateEvents();
+
