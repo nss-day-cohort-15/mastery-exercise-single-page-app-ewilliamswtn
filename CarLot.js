@@ -1,70 +1,35 @@
-document.getElementById("submitButton").addEventListener("click", function(event){
-    event.preventDefault()
-});
+//xhr req
 
-var CarLot = (function () { //iffe
+var CarLot = (function () {
   var inventory = [];
-
   return {
-    activateEvents: function() {
-      var cards = document.querySelectorAll('div.cardInfo');
-      for (var i=0; i<cards.length; i++) {
-        cards[i].addEventListener("click",function(){
-
-          //resets background color if input is not changed
-          document.querySelectorAll(".cardInfo").forEach(function (item) {
-            if (item.className === "cardInfo userTarget") {
-              item.className = "cardInfo";
-            }
-          })
-
-          this.className = "cardInfo userTarget";
-          divFocus = this;
-          document.getElementById("searchBar").placeholder = "";
-          document.getElementById("searchBar").value = "";
-          document.getElementById("searchBar").focus();
-          console.log(divFocus);
-        })
-          // this.style.backgroundColor = "black";
-          // 
-          //doesn's work ^
-
-
-        
-        // cards[i].addEventListener("mouseup", function(){
-        //   // this.style.backgroundColor = "";
-        //   // this.style.borderWidth = "";
-        //   this.className = "cardInfo";
-        // })
-      }
-
-    },
-
+    //call this when you want to use the inventory array
     getInventory: function () {
-
+      return inventory;   //does this work? purpose?
     },
-    loadInventory: function (callback) {           //callback function *
+    //call this *and pass it a function* to load 
+    loadInventory: function (callback) { 
 
-      var inventoryLoader = new XMLHttpRequest();  //XHR, or xml request object  //
-
-      inventoryLoader.open('GET', 'inventory.json');
-
-      inventoryLoader.onreadystatechange = function () {
-        if (inventoryLoader.readyState === 4) {
-          inventory = JSON.parse(inventoryLoader.responseText);
-          // callback(inventory); ??
-        }
-      }
-
-      inventoryLoader.send();
-
-      inventoryLoader.addEventListener("load", function () { //event goes in argument? or nah?
-        populatePage(inventory);
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener("load", function () {
+        inventory = JSON.parse(this.responseText).cars;
+        //console.log(inventory);  //test
+        callback(inventory);
       });
+      xhr.open("GET", "inventory.json")
+      xhr.send();
+      console.log("Load inventory done");
+       
     }
-  };
-
+  }
 })();
+//done
 
+//test----
+// CarLot.loadInventory(inventoryAlert);
+
+// function inventoryAlert (cars) {
+//   console.log(cars[0].color);
+// }
 
 
