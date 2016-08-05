@@ -16,10 +16,11 @@ var CarLot = (function () {
         //console.log(inventory);  //test
         callback(inventory);
       });
+      
       xhr.open("GET", "inventory.json")
       xhr.send();
       console.log("Load inventory done");
-       
+    
     }
   }
 })();

@@ -1,25 +1,28 @@
 //CarLot augmentor iife for event handlers
 window.onload = function () {
   CarLot.loadInventory(CarLot.populatePage);
-  CarLot.activateEvents();
-}
+};
 
 var CarLot = (function (oldCarLot) {
   oldCarLot.populatePage = function (inventoryPH) {
-    console.log(inventoryPH);
 
-    var cards = document.querySelectorAll('div.cardInfo');
+    var container = document.getElementById("divLord");
 
+    for (var j=0; j<inventoryPH.length; j++) {
+      container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>"
+    }
+
+    //logic should be the same below here
+    var cards = document.querySelectorAll("div.cardInfo");
     for (var i=0; i<inventoryPH.length; i++) {
-
-      cards[i].innerHTML += 
+      cards[i].innerHTML +=
        "<span class='titleSpan'>Manufacturer: </span><span>"
        +  inventoryPH[i].make
        + "</span><br><span class='titleSpan'>Model: </span><span>"
        + inventoryPH[i].model
        + "</span><br><span class='titleSpan'>Year: </span><span>"
        + inventoryPH[i].year
-       + "</span><br><span class='titleSpan'>Price: </span><span>" 
+       + "</span><br><span class='titleSpan'>Price: </span><span>"
        + inventoryPH[i].price
        + "</span><br><span class='titleSpan'>Color: </span><span>"
        + inventoryPH[i].color
@@ -30,22 +33,30 @@ var CarLot = (function (oldCarLot) {
        + "</span";
 
         cards[i].style.borderColor = inventoryPH[i].color;
-       //cards[i].style.border = "2px solid " + inventory.cars[i].color;
-      //this is why dynamic borders dont work on click event^
-
     }
-
+    console.log("populate page elements done")
+    CarLot.activateEvents();
   }
 
   oldCarLot.activateEvents = function () {
+    var divFocus;
     document.getElementById("submitButton").addEventListener("click", function(event){
         event.preventDefault()
     });
 
-    var cards = document.querySelectorAll('div.cardInfo');
+
+    var cards = document.querySelectorAll("div.cardInfo");
 
     for (var i=0; i<cards.length; i++) {
       cards[i].addEventListener("click",function(){
+        console.log("click");
+        divFocus = this;
+        document.getElementById("searchBar").placeholder = "";
+        document.getElementById("searchBar").value = "";
+        document.getElementById("searchBar").focus();
+        //console.log(divFocus);
+
+        CarLot.bgAndBorderChange(this, "tomato");
 
         //resets background color if input is not changed
         // document.querySelectorAll(".cardInfo").forEach(function (item) {
@@ -57,29 +68,29 @@ var CarLot = (function (oldCarLot) {
         //this.className = "cardInfo userTarget";
 
 
-        divFocus = this;
-        document.getElementById("searchBar").placeholder = "";
-        document.getElementById("searchBar").value = "";
-        document.getElementById("searchBar").focus();
-        //console.log(divFocus);
-
-        CarLot.bgAndBorderChange(this, "tomato");
-
       })
     }
 
-    oldCarLot.activateMoreEvents = function (event) {
+    // oldCarLot.activateMoreEvents = function (event) {
+    // }
+    // oldCarLot.activateEvenMoreEvents = function (event) {
+    // }
+
+    document.getElementById("searchBar").addEventListener("change", function(event){
       divFocus.querySelector(".desc").innerHTML = event.target.value;
       divFocus.className = "cardInfo";
       document.getElementById("searchBar").value = "";
       document.getElementById("searchBar").blur();
       CarLot.bgAndBorderReset();
-    }
+      console.log("changing value");
+    })
 
-    oldCarLot.activateEvenMoreEvents = function (event) {
+    document.getElementById("searchBar").addEventListener("input", function(event){
       divFocus.querySelector(".desc").innerHTML = event.target.value;
-    }
+      console.log("changing value");
+    })
 
+    console.log("event listeners done");
  }
 
 

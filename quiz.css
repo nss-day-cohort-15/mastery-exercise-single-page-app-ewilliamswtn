@@ -3,6 +3,10 @@ body {
   padding-bottom: 30px;
 }
 
+.row {
+  padding-left: 75px;
+}
+
 .card {
   background-color: #ddd;
   border: solid 1px #777;

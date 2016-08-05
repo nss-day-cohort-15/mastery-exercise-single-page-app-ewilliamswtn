@@ -11,19 +11,12 @@ var CarLot = (function (oldCarLot) {
       item.style.borderWidth = "thin";
     })
 
-
-
   }
 
   oldCarLot.bgAndBorderChange = function (DivClickedOn, colorName) {
     DivClickedOn.style.backgroundColor = colorName;
     DivClickedOn.style.borderWidth = "thick";
   }
-
-
-
-
-
 
   return oldCarLot;
 })(CarLot);
