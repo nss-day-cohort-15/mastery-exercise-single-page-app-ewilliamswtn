@@ -9,7 +9,19 @@ var CarLot = (function (oldCarLot) {
     var container = document.getElementById("divLord");
 
     for (var j=0; j<inventoryPH.length; j++) {
-      container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>"
+      if (j === 0 ) {
+        container.innerHTML += "<div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //first one, starts first row 
+        console.log(j + "first")
+      } else if ( j % 3 === 0) {
+        container.innerHTML += "</div><div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //every 3, ends a row and starts a new one
+        console.log(j + "row end")
+      } else if (j === (inventoryPH.length - 1)) {
+        container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div></div>" //last one, ends last row
+        console.log(j + "last")
+      } else {
+        container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>" //regular cards, doesnt touch rows
+        console.log(j + "reg")
+      }
     }
 
     //logic should be the same below here
@@ -49,6 +61,7 @@ var CarLot = (function (oldCarLot) {
 
     for (var i=0; i<cards.length; i++) {
       cards[i].addEventListener("click",function(){
+        CarLot.bgAndBorderReset(); //forgot to put this here 
         console.log("click");
         divFocus = this;
         document.getElementById("searchBar").placeholder = "";
@@ -97,4 +110,15 @@ var CarLot = (function (oldCarLot) {
   return oldCarLot;
 })(CarLot);
 
+//what if statement returns:
+// <div class='row'>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+// </div>
+// <div class='row'>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+//   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
+// </div>
 
