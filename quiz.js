@@ -7,22 +7,45 @@ var CarLot = (function (oldCarLot) {
   oldCarLot.populatePage = function (inventoryPH) {
 
     var container = document.getElementById("divLord");
+    var containerString = "";  //containerHTML is more accurate
 
     for (var j=0; j<inventoryPH.length; j++) {
       if (j === 0 ) {
-        container.innerHTML += "<div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //first one, starts first row 
+        containerString += "<div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //first one, starts first row
         console.log(j + "first")
       } else if ( j % 3 === 0) {
-        container.innerHTML += "</div><div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //every 3, ends a row and starts a new one
+        containerString += "</div><div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //every 3, ends a row and starts a new one
         console.log(j + "row end")
       } else if (j === (inventoryPH.length - 1)) {
-        container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div></div>" //last one, ends last row
+        containerString += "<div class='col-xs-3 card'><div class='cardInfo'></div></div></div>" //last one, ends last row
         console.log(j + "last")
       } else {
-        container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>" //regular cards, doesnt touch rows
-        console.log(j + "reg")
+        containerString += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>" //regular cards, doesnt touch rString
       }
     }
+
+    container.innerHTML += containerString;
+
+    // for (var j=0; j<inventoryPH.length; j++) { //below into string
+    //   if (j === 0 ) {
+    //     container.innerHTML += "<div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //first one, starts first row
+    //     console.log(j + "first")
+    //   } else if ( j % 3 === 0) {
+    //     container.innerHTML += "</div><div class='row'><div class='col-xs-3 card'><div class='cardInfo'></div></div>" //every 3, ends a row and starts a new one
+    //     console.log(j + "row end")
+    //   } else if (j === (inventoryPH.length - 1)) {
+    //     container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div></div>" //last one, ends last row
+    //     console.log(j + "last")
+    //   } else {
+    //     container.innerHTML += "<div class='col-xs-3 card'><div class='cardInfo'></div></div>" //regular cards, doesnt touch rows
+    //     console.log(j + "reg")
+    //   }
+    // } // above into string
+
+
+
+
+
 
     //logic should be the same below here
     var cards = document.querySelectorAll("div.cardInfo");
@@ -61,7 +84,7 @@ var CarLot = (function (oldCarLot) {
 
     for (var i=0; i<cards.length; i++) {
       cards[i].addEventListener("click",function(){
-        CarLot.bgAndBorderReset(); //forgot to put this here 
+        CarLot.bgAndBorderReset(); //forgot to put this here
         console.log("click");
         divFocus = this;
         document.getElementById("searchBar").placeholder = "";
@@ -121,4 +144,3 @@ var CarLot = (function (oldCarLot) {
 //   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
 //   <div class='col-xs-3 card'><div class='cardInfo'></div></div>
 // </div>
-

@@ -7,8 +7,8 @@ var CarLot = (function () {
     getInventory: function () {
       return inventory;   //does this work? purpose?
     },
-    //call this *and pass it a function* to load 
-    loadInventory: function (callback) { 
+    //call this *and pass it a function* to load
+    loadInventory: function (callback) {
 
       var xhr = new XMLHttpRequest();
       xhr.addEventListener("load", function () {
@@ -16,11 +16,11 @@ var CarLot = (function () {
         //console.log(inventory);  //test
         callback(inventory);
       });
-      
+
       xhr.open("GET", "inventory.json")
       xhr.send();
       console.log("Load inventory done");
-    
+
     }
   }
 })();
@@ -32,5 +32,3 @@ var CarLot = (function () {
 // function inventoryAlert (cars) {
 //   console.log(cars[0].color);
 // }
-
-
